@@ -14,12 +14,12 @@ A universal, cross-platform development environment configuration that works on 
 
 ### macOS
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/dotfiles-universal/main/scripts/install-macos.sh | bash
+curl -fsSL https://raw.githubusercontent.com/r3morce/dotfiles-universal/main/scripts/install-macos.sh | bash
 ```
 
 ### Linux (Pop!_OS/Ubuntu)
 ```bash
-curl -fsSL https://raw.githubusercontent.com/yourusername/dotfiles-universal/main/scripts/install-linux.sh | bash
+curl -fsSL https://raw.githubusercontent.com/r3morce/dotfiles-universal/main/scripts/install-linux.sh | bash
 ```
 
 ## Manual Installation
