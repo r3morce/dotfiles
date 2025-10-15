@@ -51,7 +51,6 @@ Use the Makefile for convenient management:
 ```bash
 make help           # Show available commands
 make install        # Install dotfiles using stow
-make validate       # Validate configuration files
 make setup-macos    # Setup macOS environment
 make setup-linux    # Setup Linux environment
 make clean          # Remove installed dotfiles
