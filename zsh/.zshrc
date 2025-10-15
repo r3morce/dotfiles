@@ -2,26 +2,59 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-export PATH="/opt/homebrew/bin:$PATH"
+# PLATFORM DETECTION
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    export PLATFORM="macos"
+elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
+    export PLATFORM="linux"
+else
+    export PLATFORM="unknown"
+fi
+
+# PATH CONFIGURATION
+if [[ "$PLATFORM" == "macos" ]]; then
+    export PATH="/opt/homebrew/bin:$PATH"
+    export PATH="$HOME/.local/bin:$PATH"
+elif [[ "$PLATFORM" == "linux" ]]; then
+    export PATH="$HOME/.local/bin:$PATH"
+fi
 
 export ZSH="$HOME/.oh-my-zsh"
 
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
- plugins=(
+plugins=(
   git
   zsh-autosuggestions
   zsh-syntax-highlighting
   fast-syntax-highlighting
   zsh-autocomplete
- )
+)
 
 source $ZSH/oh-my-zsh.sh
 
-# EDITOR CONFIGURATION
-export EDITOR='nvim'
-export VISUAL='nvim'
-alias v='nvim'
+# THEMES & PLUGINS - Platform specific sourcing
+if [[ "$PLATFORM" == "macos" ]]; then
+    source /opt/homebrew/share/powerlevel10k/powerlevel10k.zsh-theme
+elif [[ "$PLATFORM" == "linux" ]]; then
+    source ~/powerlevel10k/powerlevel10k.zsh-theme
+fi
+
+# External plugins - Platform specific
+if [[ "$PLATFORM" == "macos" ]]; then
+    source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+    source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    source /opt/homebrew/share/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+elif [[ "$PLATFORM" == "linux" ]]; then
+    [[ -f ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh ]] && source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+    [[ -f ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]] && source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    [[ -f ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh ]] && source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh
+fi
+
+# Browser
+if [[ "$PLATFORM" == "macos" ]]; then
+    export BROWSER=open
+fi
 
 # HISTORY CONFIGURATION
 HISTSIZE=10000
