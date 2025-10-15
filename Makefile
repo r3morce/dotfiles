@@ -17,7 +17,7 @@ help:
 # Install dotfiles
 install:
 	@echo "Installing dotfiles..."
-	stow .
+	stow zsh nvim wezterm p10k
 
 # Setup macOS environment
 setup-macos:
@@ -32,9 +32,9 @@ setup-linux:
 # Remove installed dotfiles
 clean:
 	@echo "Removing installed dotfiles..."
-	stow -D .
+	stow -D zsh nvim wezterm p10k
 
 # Restow (useful after updates)
 restow:
 	@echo "Restowing dotfiles..."
-	stow -R .
+	stow -R zsh nvim wezterm p10k

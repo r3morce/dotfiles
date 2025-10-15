@@ -40,18 +40,66 @@ git clone https://github.com/r3morce/dotfiles.git ~/.dotfiles && cd ~/.dotfiles 
    make setup-linux && make install
    ```
 
-## Platform Detection
+## Repository Structure & Symlinks
 
-The configuration automatically detects your platform and applies the appropriate settings:
+The dotfiles are organized using GNU Stow, which creates symlinks from the repository directories to your home directory:
 
-- **macOS**: Uses Homebrew paths, macOS-specific aliases
-- **Linux**: Uses apt/package manager paths, Linux-specific aliases
+```mermaid
+---
+config:
+  theme: 'dracula'
+---
+graph LR
+    subgraph "Repository"
+        A[📁 dotfiles/]
+        B[📁 zsh/]
+        C[📁 nvim/]
+        D[📁 wezterm/]
+        E[📁 p10k/]
+        F[📁 scripts/]
+        G[📄 README.md]
+        H[📄 Makefile]
+    end
+    
+    subgraph "Config Files"
+        B1[📄 .zshrc]
+        C1[📁 .config/nvim/]
+        D1[📁 .config/wezterm/]
+        E1[📄 .p10k.zsh]
+    end
+    
+    subgraph "Home Directory"
+        I[📄 ~/.zshrc]
+        J[📁 ~/.config/nvim/]
+        K[📁 ~/.config/wezterm/]
+        L[📄 ~/.p10k.zsh]
+        M[❌ Not symlinked]
+    end
+    
+    A --> B
+    A --> C
+    A --> D
+    A --> E
+    A --> F
+    A --> G
+    A --> H
+    
+    B --> B1
+    C --> C1
+    D --> D1
+    E --> E1
+    
+    B1 -.->|symlink| I
+    C1 -.->|symlink| J
+    D1 -.->|symlink| K
+    E1 -.->|symlink| L
+    
+    F -.->|ignored| M
+    G -.->|ignored| M
+    H -.->|ignored| M
 
-## Customization
+    classDef greenBorder stroke:#14710A,stroke-width:2px
+    class I,J,K,L,B1,C1,D1,E1 greenBorder
 
-After installation, you can customize your setup:
 
-- Run `p10k configure` to customize your prompt
-- Edit `~/.zshrc` for shell customizations
-- Modify WezTerm settings in `~/.config/wezterm/wezterm.lua`
-- Add more Oh My Zsh plugins by editing the `plugins=()` array in `~/.zshrc`
+```

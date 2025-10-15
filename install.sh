@@ -36,7 +36,7 @@ fi
 
 # Install dotfiles using stow
 echo "📁 Installing dotfiles..."
-stow .
+stow zsh nvim wezterm p10k
 
 echo "✅ Installation complete!"
 echo ""
