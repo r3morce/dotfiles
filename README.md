@@ -12,17 +12,13 @@ A universal, cross-platform development environment configuration that works on 
 
 ## Quick Start
 
-### macOS
+### One-Command Installation
 ```bash
-curl -fsSL https://raw.githubusercontent.com/r3morce/dotfiles-universal/main/scripts/install-macos.sh | bash
+# Clone and install everything
+git clone https://github.com/r3morce/dotfiles.git ~/.dotfiles && cd ~/.dotfiles && ./install.sh
 ```
 
-### Linux (Pop!_OS/Ubuntu)
-```bash
-curl -fsSL https://raw.githubusercontent.com/r3morce/dotfiles-universal/main/scripts/install-linux.sh | bash
-```
-
-## Manual Installation
+### Manual Installation
 
 1. **Clone the repository:**
    ```bash
@@ -30,18 +26,18 @@ curl -fsSL https://raw.githubusercontent.com/r3morce/dotfiles-universal/main/scr
    cd ~/.dotfiles
    ```
 
-2. **Run platform-specific setup:**
+2. **Run the installer:**
    ```bash
-   # For macOS
-   make setup-macos
-   
-   # For Linux
-   make setup-linux
+   ./install.sh
    ```
 
-3. **Install dotfiles:**
+   Or use the Makefile:
    ```bash
-   make install
+   # For macOS
+   make setup-macos && make install
+   
+   # For Linux
+   make setup-linux && make install
    ```
 
 ## Available Commands
