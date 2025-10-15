@@ -64,6 +64,15 @@ curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/sh
 echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
 sudo apt update && sudo apt install -y wezterm
 
+# Install Oh My Zsh
+print_info "Installing Oh My Zsh..."
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  print_status 0 "Oh My Zsh installed"
+else
+  print_status 0 "Oh My Zsh is already installed"
+fi
+
 # Install Zsh plugins
 print_info "Installing Zsh plugins..."
 mkdir -p ~/.zsh

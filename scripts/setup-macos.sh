@@ -61,6 +61,15 @@ brew update
 print_info "Installing core development tools..."
 brew install neovim wezterm zoxide eza fd stow
 
+# Install Oh My Zsh
+print_info "Installing Oh My Zsh..."
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  print_status 0 "Oh My Zsh installed"
+else
+  print_status 0 "Oh My Zsh is already installed"
+fi
+
 # Install Zsh plugins
 print_info "Installing Zsh plugins..."
 brew install zsh-autosuggestions zsh-syntax-highlighting zsh-autocomplete powerlevel10k

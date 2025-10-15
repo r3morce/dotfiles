@@ -18,12 +18,7 @@ fi
 # ============================================================================
 # HISTORY CONFIGURATION
 # ============================================================================
-HISTSIZE=10000
-SAVEHIST=10000
-HISTFILE=~/.zsh_history
-setopt SHARE_HISTORY
-setopt HIST_IGNORE_DUPS
-setopt HIST_IGNORE_SPACE
+# History configuration handled by OMZ history plugin
 
 # ============================================================================
 # PATH CONFIGURATION
@@ -84,7 +79,6 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=cyan,bold'
 # ============================================================================
 # Universal aliases
 alias lg='lazygit'
-alias gs="git status"
 alias fd='fd -I'
 
 # Platform-specific aliases
@@ -115,8 +109,7 @@ alias la="eza --icons=always -la"
 # Initialize zoxide (smarter cd)
 eval "$(zoxide init zsh)"
 
-# Better completion
-autoload -U compinit && compinit
+# Completion handled by OMZ
 
 
 # ============================================================================
@@ -124,3 +117,9 @@ autoload -U compinit && compinit
 # ============================================================================
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+# ============================================================================
+# OH-MY-ZSH CONFIGURATION
+# ============================================================================
+export ZSH="$HOME/.oh-my-zsh"
+plugins=(git extract copypath copyfile history)
+source $ZSH/oh-my-zsh.sh
